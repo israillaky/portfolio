@@ -1,45 +1,41 @@
+// Set current year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
-const root = document.documentElement;
-let targetX = window.innerWidth * 0.5;
-let targetY = window.innerHeight * 0.35;
-let currentX = targetX;
-let currentY = targetY;
+// Add scroll effect to navbar
+const navbar = document.querySelector('.navbar');
 
-const updateTarget = (x, y) => {
-	targetX = x;
-	targetY = y;
-};
-
-window.addEventListener('pointermove', (event) => {
-	updateTarget(event.clientX, event.clientY);
+window.addEventListener('scroll', () => {
+	const currentScroll = window.pageYOffset;
+	
+	if (currentScroll > 50) {
+		navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+		navbar.style.backdropFilter = 'blur(12px)';
+	} else {
+		navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+		navbar.style.backdropFilter = 'blur(12px)';
+	}
 });
 
-window.addEventListener('touchmove', (event) => {
-	if (!event.touches || !event.touches[0]) return;
-	updateTarget(event.touches[0].clientX, event.touches[0].clientY);
-}, { passive: true });
+const aboutTabs = document.querySelectorAll('.about-tab[data-tab-target]');
+const aboutPanels = document.querySelectorAll('.about-tab-panel[data-tab-panel]');
 
-const animateGlow = () => {
-	currentX += (targetX - currentX) * 0.12;
-	currentY += (targetY - currentY) * 0.12;
-	root.style.setProperty('--mx', `${currentX}px`);
-	root.style.setProperty('--my', `${currentY}px`);
-	requestAnimationFrame(animateGlow);
-};
+if (aboutTabs.length && aboutPanels.length) {
+	aboutTabs.forEach((tab) => {
+		tab.addEventListener('click', () => {
+			const target = tab.getAttribute('data-tab-target');
+			if (!target) return;
 
-document.querySelectorAll('.project-card a').forEach((link) => {
-	const href = link.getAttribute('href');
-	if (!href) return;
+			aboutTabs.forEach((item) => item.classList.remove('is-active'));
+			tab.classList.add('is-active');
 
-	const favicon = document.createElement('img');
-	favicon.className = 'project-favicon';
-	favicon.alt = '';
-	favicon.loading = 'lazy';
-	favicon.decoding = 'async';
-	favicon.referrerPolicy = 'no-referrer';
-	favicon.src = `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(href)}&sz=32`;
-	link.prepend(favicon);
-});
+			aboutPanels.forEach((panel) => {
+				const panelName = panel.getAttribute('data-tab-panel');
+				const isMatch = panelName === target;
+				panel.hidden = !isMatch;
+				panel.classList.toggle('is-active', isMatch);
+			});
+		});
+	});
+}
 
-animateGlow();
+// Contact uses direct mailto link for static hosting (index.html only)
