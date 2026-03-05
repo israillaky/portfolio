@@ -724,6 +724,14 @@ footer {
 	position: relative;
 }
 
+.project-preview img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+	display: block;
+}
+
 .preview-placeholder {
 	font-family: var(--font-heading);
 	font-size: 1.5rem;
