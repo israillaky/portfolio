@@ -21,34 +21,40 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="assets/styles.css" />
+	<meta property="og:title" content="Contact | Israil Parajes" />
+	<meta property="og:description" content="Contact Israil Parajes for WordPress development projects." />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary" />
 </head>
 <body>
+	<a class="skip-link" href="#main-content">Skip to content</a>
 	<header class="navbar">
 		<div class="container nav-wrap">
 			<a class="nav-brand" href="index.html">Israil Parajes</a>
 			<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">☰</button>
-			<nav class="nav-menu" id="site-menu">
+			<nav class="nav-menu" id="site-menu" aria-label="Main navigation">
 				<button class="menu-close" type="button" aria-label="Close menu">✕</button>
 				<a href="about.html" class="nav-link">About</a>
 				<a href="works.html" class="nav-link">Works</a>
 				<a href="capabilities.html" class="nav-link">Capabilities</a>
-				<a href="contact.html" class="nav-link">Contact</a>
+				<a href="contact.html" class="nav-link" aria-current="page">Contact</a>
 			</nav>
 			<div class="menu-overlay" aria-hidden="true"></div>
 		</div>
 	</header>
 
-	<main>
+	<main id="main-content">
 		<section class="contact">
 			<div class="container contact-content">
 				<div class="contact-header">
-					<h2>Let's Build Something Great</h2>
+					<h1>Let’s build something useful.</h1>
 					<p>Have a project, collaboration, or consulting need? Let's talk.</p>
 				</div>
 				<div class="contact-form">
 					<p class="contact-email-label">Email me directly</p>
 					<a class="btn btn-primary contact-email-btn" href="mailto:ipcastino@gmail.com?subject=Project%20Inquiry%20from%20Portfolio">ipcastino@gmail.com</a>
-				</div>
+				<button class="copy-email" type="button" data-copy-email="ipcastino@gmail.com">Copy email address</button><p class="copy-status" role="status" aria-live="polite"></p></div>
+				<div class="inquiry-note"><h2>A good place to start</h2><p>Tell me about your website, what you need help with, and your preferred timeline. If you have a project brief or an existing site, include that too.</p></div>
 				<div class="contact-links">
 					<p>Or connect with me here:</p>
 					<div class="social-links">
