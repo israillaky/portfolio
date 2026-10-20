@@ -159,7 +159,7 @@ if (projectGrid && moreProjects && loadMoreProjects && projectCount) {
  };
  updateProjects();
  loadMoreProjects.addEventListener('click', () => {
-  const batch = remaining.splice(0, 6);
+  const batch = remaining.splice(0, 9);
   projectGrid.append(...batch);
   updateProjects();
   const firstLink = batch[0]?.querySelector('a');
