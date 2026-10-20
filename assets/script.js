@@ -143,3 +143,26 @@ document.querySelectorAll('[data-copy-email]').forEach(button => {
   }
  });
 });
+
+
+// Template images stay inert until their project batch is revealed.
+const projectGrid = document.getElementById('project-grid');
+const moreProjects = document.getElementById('more-projects');
+const loadMoreProjects = document.getElementById('load-more-projects');
+const projectCount = document.getElementById('project-count');
+if (projectGrid && moreProjects && loadMoreProjects && projectCount) {
+ const remaining = [...moreProjects.content.children];
+ const total = projectGrid.children.length + remaining.length;
+ const updateProjects = () => {
+  projectCount.textContent = `Showing ${projectGrid.children.length} of ${total} projects`;
+  loadMoreProjects.hidden = remaining.length === 0;
+ };
+ updateProjects();
+ loadMoreProjects.addEventListener('click', () => {
+  const batch = remaining.splice(0, 6);
+  projectGrid.append(...batch);
+  updateProjects();
+  const firstLink = batch[0]?.querySelector('a');
+  if (firstLink) firstLink.focus({ preventScroll: true });
+ });
+}
